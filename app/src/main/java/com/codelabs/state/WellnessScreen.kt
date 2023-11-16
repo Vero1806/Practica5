@@ -26,16 +26,16 @@ fun WellnessScreen(
     wellnessViewModel: WellnessViewModel = viewModel()
 ) {
     Column(modifier = modifier) {
-        StatefulCounter()
+        WaterCounter()
 
-        WellnessTasksList(
-            list = wellnessViewModel.tasks,
-            onCheckedTask = { task, checked ->
-                wellnessViewModel.changeTaskChecked(task, checked)
-            },
-            onCloseTask = { task ->
-                wellnessViewModel.remove(task)
-            }
-        )
+//        WellnessTasksList(
+//            list = wellnessViewModel.tasks,
+//            onCheckedTask = { task, checked ->
+//                wellnessViewModel.changeTaskChecked(task, checked)
+//            },
+//            onCloseTask = { task ->
+//                wellnessViewModel.remove(task)
+//            }
+//        )
     }
 }
