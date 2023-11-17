@@ -17,6 +17,7 @@ package com.codelabs.state
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -37,16 +38,40 @@ fun WaterCounter(modifier: Modifier = Modifier){
     //var count = 0;
 
     Column (modifier = Modifier.padding(16.dp)){
-        val count: MutableState <Int> = remember {mutableStateOf(0)}
+        var count by remember {mutableStateOf(0)} //: MutableState <Int> =
 
-    Text(
-        text = "Llevas ${count.value} vasos de agua hoy.",
-        modifier = modifier.padding(16.dp)
-    )
-    Button(onClick = {count.value++},
-    modifier.padding(8.dp)
+        if (count>0){
+            var showTask by remember {mutableStateOf(true)}
+            if(showTask){
+                WellnessTaskItem(taskName = "¿Has estado ando tus 15 minutos diarios hoy?",
+                onClose = {showTask = false})
+            }
+        }
+
+        if (count == 0){
+            Text(
+                text = "Llevas $count vasos de agua hoy.", //count.value
+                modifier = modifier.padding(16.dp)
+            )}
+
+        else if (count >= 1) {Text(
+            text = "Llevas $count vasos de agua hoy.", //count.value
+            modifier = modifier.padding(16.dp)
+        )}
+
+    Row (modifier = modifier .padding(top = 8.dp)){
+
+    Button(onClick = {count ++}, //count.value++
+    modifier, enabled = count <10  // desactiva el botón cuando llega a 10
+
     ) {
         Text("Bebete otro vaso de agua")
+    }
+        if (count > 0){
+        Button(onClick = {count = 0}, modifier,) {
+            Text(text = "Ya vale de basos de agua por hoy")
+        }
+        }
     }
     }
 }

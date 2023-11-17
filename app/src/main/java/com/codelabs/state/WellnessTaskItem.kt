@@ -31,27 +31,22 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun WellnessTaskItem(
     taskName: String,
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
     onClose: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
+    Row (modifier = modifier, verticalAlignment = Alignment.CenterVertically){
         Text(
-            modifier = Modifier
+            modifier = modifier
                 .weight(1f)
                 .padding(start = 16.dp),
-            text = taskName
-        )
-        Checkbox(
-            checked = checked,
-            onCheckedChange = onCheckedChange
-        )
+            text = taskName)
+
         IconButton(onClick = onClose) {
+
             Icon(Icons.Filled.Close, contentDescription = "Close")
         }
     }
-}
+
+
+    }
+
