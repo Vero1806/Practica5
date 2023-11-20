@@ -108,8 +108,8 @@ fun StatefulCounter (modifier: Modifier = Modifier){
     var waterCount by rememberSaveable {mutableStateOf(0)}
     var juiceCount by rememberSaveable {mutableStateOf(0)}
     Column {
-    statelessCounter(count = waterCount, onIncrement = {waterCount++}) // onIncrement incrementa el contador en una función pero sustituyendo con vectores.
-    statelessCounter(count = juiceCount, onIncrement = {juiceCount++})
+    statelessCounter(count = waterCount, name = "agua", onIncrement = {waterCount++}) // onIncrement incrementa el contador en una función pero sustituyendo con vectores.
+    statelessCounter(count = juiceCount, name = "zumo", onIncrement = {juiceCount++})
     }
 }
 
