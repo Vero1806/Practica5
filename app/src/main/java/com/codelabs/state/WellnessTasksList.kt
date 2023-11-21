@@ -17,11 +17,29 @@ package com.codelabs.state
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.magnifier
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun WellnessTasksList(){
+private fun WellnessTasksList() = List(30) {
+        i ->WellnessTask(i,"Task #$i")
+}
 
 
+@Composable
+fun WellnessTaskList(
+    modifier: Modifier = Modifier,
+    list: List <WellnessTask> = rememberSaveable {
+        getWellnessTasks()
+    }
+)
+{
+    LazyColumn(modifier = modifier){
+        item(list){
+                task -> WellnessTaskItem(taskName = task.label)
+        }
+    }
 }
