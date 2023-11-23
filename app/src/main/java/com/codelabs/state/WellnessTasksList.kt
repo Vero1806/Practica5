@@ -23,23 +23,21 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 
-@Composable
-private fun WellnessTasksList() = List(30) {
-        i ->WellnessTask(i,"Task #$i")
-}
 
 
 @Composable
 fun WellnessTaskList(
     modifier: Modifier = Modifier,
-    list: List <WellnessTask> = rememberSaveable {
-        getWellnessTasks()
-    }
+    onCloseTask: (WellnessTask) -> Unit,
+    list: List <WellnessTask>
 )
 {
     LazyColumn(modifier = modifier){
-        item(list){
-                task -> WellnessTaskItem(taskName = task.label)
+        items(
+            items = list,
+            key = {task -> task.id}
+        ){
+                task -> WellnessTaskItem(taskName = task.label, onClose ={onCloseTask(task)})
         }
     }
 }

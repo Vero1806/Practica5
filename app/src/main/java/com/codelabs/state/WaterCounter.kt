@@ -115,7 +115,7 @@ fun AnotherStatelessMethod(
 ) {
     Column(modifier = modifier.padding(16.dp)) {
         if (count > 0) {
-            Text("LLevas $count vasos de agua")
+            Text("LLevas $count vasos de $name")
         }
         Button(onClick = onIncrement, Modifier.padding(top = 8.dp), enabled = count < 10) {
             Text("Bebete otro")
@@ -130,7 +130,6 @@ fun StatefulCounter(modifier: Modifier = Modifier) {
     var juiceCount by rememberSaveable { mutableStateOf(0) }
     var beerCount by rememberSaveable { mutableStateOf(0) }
     Column {
-
         statelessCounter(count = waterCount, name = "agua", onIncrement = { waterCount++ }) // onIncrement incrementa el contador en una función pero sustituyendo con vectores.
         AnotherStatelessMethod(count = waterCount, name = "agua", onIncrement = { waterCount *= 2 })
         statelessCounter(count = juiceCount, name = "zumo", onIncrement = { juiceCount++ })

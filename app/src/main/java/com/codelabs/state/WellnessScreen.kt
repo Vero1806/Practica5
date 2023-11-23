@@ -17,8 +17,11 @@ package com.codelabs.state
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+
+
 
 @Composable
 fun WellnessScreen(
@@ -26,7 +29,9 @@ fun WellnessScreen(
     wellnessViewModel: WellnessViewModel = viewModel()
 ) {
     Column(modifier = modifier) {
-        WaterCounter()
+        StatefulCounter()
+
+        WellnessTaskList(list = WellnessViewModel.tasks, onCloseTask = {task ->  WellnessViewModel.remove(task)}) //recoge la lista y una funcion landa que remueve la lista anterior
 
 //        WellnessTasksList(
 //            list = wellnessViewModel.tasks,
