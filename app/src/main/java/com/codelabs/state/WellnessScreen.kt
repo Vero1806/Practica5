@@ -31,7 +31,10 @@ fun WellnessScreen(
     Column(modifier = modifier) {
         StatefulCounter()
 
-        WellnessTaskList(list = WellnessViewModel.tasks, onCloseTask = {task ->  WellnessViewModel.remove(task)}) //recoge la lista y una funcion landa que remueve la lista anterior
+        WellnessTaskList(
+            list = wellnessViewModel.tasks,
+            onCheckedTask = {task, checked -> wellnessViewModel.changeTaskChecked(task, checked)},
+            onCloseTask = {task ->  wellnessViewModel.remove(task)}) //recoge la lista y una funcion landa que remueve la lista anterior
 
 //        WellnessTasksList(
 //            list = wellnessViewModel.tasks,
